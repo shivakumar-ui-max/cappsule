@@ -5,8 +5,28 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer base {
+   h4 {
+      @apply text-sm text-h1 font-poppins font-light w-1/2;
+   }
+}
+.card {
+   background: linear-gradient(275.41deg, #d5e7e6 -27.33%, #ffffff 46.85%);
+   box-shadow: 0px 0px 30px 0px hsla(0, 0%, 0%, 0.1);
+}
+.item-shadow {
+   box-shadow: 0px 0px 11.54px 0px hsla(169, 100%, 39%, 0.4);
+}
+
 @layer {
    .box-shadow {
       box-shadow: 0px 0px 50px 0px rgba(173, 173, 173, 0.4);
    }
+}
+
+.item {
+   @apply m-1 text-xs font-poppins font-semibold cursor-pointer  rounded-inner py-1 px-2;
+}
+.ul-flex {
+   @apply flex flex-wrap w-full items-center justify-start gap-1;
 }

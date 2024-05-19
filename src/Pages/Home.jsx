@@ -9,13 +9,14 @@ const Home = () => {
       <>
          <div className="bg-bg max-w-4xl container mx-auto">
             <SearchBar />
-            {data.length !== 0 ? (
+            {/* {data.length !== 0 ? (
                <Card />
             ) : (
                <h2 className="text-center mt-72 text-bodyTxt font-poppins font-semibold">
                   “ Find medicines with amazing discount “
                </h2>
-            )}
+            )} */}
+            <Card />
          </div>
       </>
    );
