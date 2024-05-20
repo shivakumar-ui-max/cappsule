@@ -1,22 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { dataContext } from "../context/DataContext";
 
-const Strength = ({ item }) => {
-   const { cardIndex, selectedForms } = useContext(dataContext);
+const Strength = ({ item, cardId }) => {
+   const { selectedStrengh, setSelectedStrengh, formSeclected } =
+      useContext(dataContext);
 
-   const getFormName = () => {
-      if (selectedForms !== "") {
-         console.log(selectedForms[cardIndex]);
-      }
-   };
-
-   getFormName();
+   let strengthData;
+   if (formSeclected && item.salt_forms_json) {
+      strengthData = item.salt_forms_json[formSeclected.name];
+   }
    return (
       <>
          <div className="strength flex  justify-between  mt-3">
             <h4 className="">Strength:</h4>
             <ul className="ul-flex ">
-               <li className="item item-shadow">100mg</li>
+               {strengthData &&
+                  Object.keys(strengthData).filter((strengthValue, id) => {
+                     return (
+                        formSeclected.id === cardId && (
+                           <li key={id} onClick={handleClick}>
+                              {strengthValue}
+                           </li>
+                        )
+                     );
+                  })}
             </ul>
          </div>
       </>

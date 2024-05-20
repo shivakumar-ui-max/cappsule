@@ -13,16 +13,16 @@ const Card = () => {
    return (
       <>
          {data.length !== 0 &&
-            data.map((item, i) => {
+            data.map((item, cardId) => {
                return (
                   <div
                      className="card w-[1007px]  flex justify-between items-center p-5  my-4 rounded-card"
-                     key={i}
-                     id={i}
+                     key={cardId}
+                     id={cardId}
                   >
                      <div className="card-product-types ">
-                        <Form item={item.available_forms} i={i} />
-                        <Strength item={item} />
+                        <Form item={item.available_forms} cardId={cardId} />
+                        <Strength item={item} cardId={cardId} />
                         <Packaging />
                      </div>
 

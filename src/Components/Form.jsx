@@ -1,39 +1,39 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { dataContext } from "../context/DataContext";
 
-const Form = ({ item, i }) => {
-   const { selectedForms, setSelectedForm, setCardIndex } =
-      useContext(dataContext);
-   const handleFormClick = (form) => {
-      Object.keys(selectedForms).forEach((key) => {
-         if (selectedForms[key] !== form) {
-            setSelectedForm(key, null);
-         }
-      });
-      setSelectedForm(i, form);
-      setCardIndex(i);
+const Form = ({ item, cardId }) => {
+   const { formSeclected, setFormSeclected } = useContext(dataContext);
+   const handleClick = (form, cardId) => {
+      return () => {
+         setFormSeclected({
+            id: cardId,
+            name: form,
+         });
+      };
    };
 
    return (
       <div className="form flex justify-between">
          <h4>Form:</h4>
          <ul className="ul-flex">
-            {item.map((form, j) => (
-               <li
-                  key={j}
-                  id={j}
-                  onClick={() => handleFormClick(form)}
-                  className={
-                     selectedForms[i] === form
-                        ? "border-2 border-solid border-medicine item item-shadow"
-                        : "border-2 border-solid border-bodyTxt item"
-                  }
-               >
-                  {form}
-               </li>
-            ))}
+            {item.map((form, j) => {
+               return (
+                  <li
+                     key={j}
+                     id={j}
+                     className={
+                        cardId === formSeclected.id &&
+                        form === formSeclected.name
+                           ? "item item-shadow border-solid border border-medicine"
+                           : "item border border-bodyTxt"
+                     }
+                     onClick={handleClick(form, cardId)}
+                  >
+                     {form}
+                  </li>
+               );
+            })}
          </ul>
-
          {item.length > 3 && (
             <span className="self-end font-poppins font-bold text-search">
                more..
